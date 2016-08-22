@@ -1,0 +1,51 @@
+# Hidden system
+*~
+*.log
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+*.bak
+*.swp
+.cvs
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.diff
+*.err
+*.orig
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
+*~
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+*.sass-cache
+*.ruby-version
+._*
+lib-cov
+
+pids
+logs
+results
+
+# Node
+npm-debug.log
+node_modules
+
+# Server
+#.htaccess
+
+# Sass
+*.sass-cache
+
+# Folders
+dist

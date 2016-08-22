@@ -1,0 +1,16 @@
+{
+  "name": "bolt",
+  "title": "A performance-centered project boilerplate.",
+  "author": "Jon Yablonski",
+  "url": "http://jonyablonski.com/",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmy1138/bolt"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
