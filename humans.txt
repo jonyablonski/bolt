@@ -1,0 +1,11 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Jon Yablonski -- Designer/Developer -- https://twitter.com/JonYablonski
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, Sass, HTML5, Gulp
+    Apache Server Configs, Normalize.css
