@@ -12,23 +12,27 @@ var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var gulpStylelint = require('gulp-stylelint');
 
+// Scripts
+var concat = require('gulp-concat');
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+
 
 /**
 * Paths
 */
 var paths = {
-	input: './app',
+	input: './src',
 	output: './dist',
 	markup: {
-
 	},
 	styles: {
-		input: './app/sass/**/*.{scss,sass}',
-		output: './app/css'
+		input: './src/sass/**/*.{scss,sass}',
+		output: './src/css/build'
 	},
 	scripts: {
-			input: '',
-			output: ''
+		input: ['./src/js/polyfills/*.js', './src/js/plugins/*.js', './src/js/main.js'],
+    	output: './src/js/build',
 	},
 	images: {
 			input: '',
@@ -68,11 +72,11 @@ var autoprefixerOptions = {
 */
 
 gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: paths.input
-        }
-    });
+	browserSync.init({
+		server: {
+			baseDir: paths.input
+		}
+	});
 });
 
 gulp.task('sass', function() {
@@ -89,17 +93,29 @@ gulp.task('sass', function() {
 });
 
 gulp.task('lint-css', function lintCssTask() {
-  return gulp
-    .src(paths.styles.output)
-    .pipe(gulpStylelint({
-      reporters: [
-        {formatter: 'string', console: true}
-      ]
-    }));
+	return gulp
+		.src(paths.styles.output)
+		.pipe(gulpStylelint({
+			reporters: [
+				{formatter: 'string', console: true}
+			]
+		}));
+});
+
+gulp.task('scripts', function() {
+	gulp.src(paths.scripts.input)
+		.pipe(jshint('.jshintrc'))
+		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(concat('main.js'))
+		.pipe(gulp.dest(paths.scripts.output))
+		.pipe(browserSync.reload({
+			stream: true
+		}))
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.styles.input, ['sass']);
+	gulp.watch(paths.styles.input, ['sass', 'lint-css']);
+	gulp.watch(paths.scripts.input, ['scripts']);
 });
 
 
@@ -115,6 +131,7 @@ gulp.task('watch', function() {
 gulp.task('default', [
 	'sass',
 	'lint-css',
+	'scripts',
 	'watch',
 	'browser-sync'
 ]);
