@@ -5,6 +5,9 @@
 // General
 var browserSync = require('browser-sync').create();
 
+// Markup
+var nunjucksRender = require('gulp-nunjucks-render');
+
 // Styles
 var gulp = require('gulp');
 var sass = require('gulp-sass');
@@ -25,6 +28,8 @@ var paths = {
 	input: './src',
 	output: './dist',
 	markup: {
+		input: './src/templates/**/*.+(html)',
+		output: './src'
 	},
 	styles: {
 		input: './src/sass/**/*.{scss,sass}',
@@ -79,8 +84,19 @@ gulp.task('browser-sync', function() {
 	});
 });
 
+gulp.task('html', function() {
+	return gulp.src(paths.markup.input)
+  .pipe(nunjucksRender({
+		path: ['./src/partials']
+	}))
+  .pipe(gulp.dest(paths.markup.output))
+  .pipe(browserSync.reload({
+		stream: true
+	}))
+});
+
 gulp.task('sass', function() {
-	return gulp.src( paths.styles.input )
+	return gulp.src(paths.styles.input)
 		.pipe(sourcemaps.init())
 		.pipe(sass(sassOptions).on('error', sass.logError))
 		.pipe(autoprefixer())
@@ -114,6 +130,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('watch', function() {
+	gulp.watch(paths.markup.input, ['html']);
 	gulp.watch(paths.styles.input, ['sass', 'lint-css']);
 	gulp.watch(paths.scripts.input, ['scripts']);
 });
@@ -129,6 +146,7 @@ gulp.task('watch', function() {
 */
 
 gulp.task('default', [
+	'html',
 	'sass',
 	'lint-css',
 	'scripts',
