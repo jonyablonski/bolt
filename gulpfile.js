@@ -20,6 +20,10 @@ var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
+// SVG
+var svgstore = require('gulp-svgstore');
+var svgSprite = require('gulp-svg-sprite');
+
 
 /**
 * Paths
@@ -37,7 +41,7 @@ var paths = {
 	},
 	scripts: {
 		input: ['./src/js/polyfills/*.js', './src/js/plugins/*.js', './src/js/main.js'],
-    	output: './src/js/build',
+		output: './src/js/build',
 	},
 	images: {
 			input: '',
@@ -47,9 +51,9 @@ var paths = {
 			input: '',
 			output: ''
 	},
-	symbols: {
-			input: '',
-			output: ''
+	svg: {
+			input: './src/svg/*.svg',
+			output: './src/svg/build'
 	},
 	icons: {
 			input: '',
@@ -59,7 +63,7 @@ var paths = {
 
 
 /**
-* Variables
+* Configs
 */
 
 var sassOptions = {
@@ -86,11 +90,11 @@ gulp.task('browser-sync', function() {
 
 gulp.task('html', function() {
 	return gulp.src(paths.markup.input)
-  .pipe(nunjucksRender({
+		.pipe(nunjucksRender({
 		path: ['./src/partials']
 	}))
-  .pipe(gulp.dest(paths.markup.output))
-  .pipe(browserSync.reload({
+		.pipe(gulp.dest(paths.markup.output))
+		.pipe(browserSync.reload({
 		stream: true
 	}))
 });
@@ -108,9 +112,8 @@ gulp.task('sass', function() {
 		}))
 });
 
-gulp.task('lint-css', function lintCssTask() {
-	return gulp
-		.src(paths.styles.output)
+gulp.task('lint-styles', function() {
+	return gulp.src(paths.styles.output)
 		.pipe(gulpStylelint({
 			reporters: [
 				{formatter: 'string', console: true}
@@ -119,7 +122,7 @@ gulp.task('lint-css', function lintCssTask() {
 });
 
 gulp.task('scripts', function() {
-	gulp.src(paths.scripts.input)
+	return gulp.src(paths.scripts.input)
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'))
 		.pipe(concat('main.js'))
@@ -129,9 +132,30 @@ gulp.task('scripts', function() {
 		}))
 });
 
+
+var config                  = {
+    mode                : {
+        css             : {     // Activate the «css» mode
+            render      : {
+                css     : true  // Activate CSS output (with default options)
+            }
+        }
+    }
+};
+
+gulp.task('svg', function() {
+	return gulp.src(paths.svg.input)
+		.pipe(svgSprite(config))
+		.pipe(gulp.dest(paths.svg.output))
+		.pipe(browserSync.reload({
+			stream: true
+		}))
+});
+
 gulp.task('watch', function() {
 	gulp.watch(paths.markup.input, ['html']);
-	gulp.watch(paths.styles.input, ['sass', 'lint-css']);
+	gulp.watch(paths.styles.input, ['sass', 'lint-styles']);
+	gulp.watch(paths.svg.input, ['svg']);
 	gulp.watch(paths.scripts.input, ['scripts']);
 });
 
@@ -148,8 +172,9 @@ gulp.task('watch', function() {
 gulp.task('default', [
 	'html',
 	'sass',
-	'lint-css',
+	'lint-styles',
 	'scripts',
+	'svg',
 	'watch',
 	'browser-sync'
 ]);

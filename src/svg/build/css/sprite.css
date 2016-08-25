@@ -1,0 +1,72 @@
+.svg-chevron-small-down {
+	background: url("svg/sprite.css-ed23a3d3.svg") 0 0 no-repeat;
+}
+
+.svg-chevron-small-down-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-chevron-small-left {
+	background: url("svg/sprite.css-ed23a3d3.svg") 50% 0 no-repeat;
+}
+
+.svg-chevron-small-left-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-chevron-small-right {
+	background: url("svg/sprite.css-ed23a3d3.svg") 0 50% no-repeat;
+}
+
+.svg-chevron-small-right-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-chevron-small-up {
+	background: url("svg/sprite.css-ed23a3d3.svg") 50% 50% no-repeat;
+}
+
+.svg-chevron-small-up-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-cross {
+	background: url("svg/sprite.css-ed23a3d3.svg") 100% 0 no-repeat;
+}
+
+.svg-cross-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-menu {
+	background: url("svg/sprite.css-ed23a3d3.svg") 100% 50% no-repeat;
+}
+
+.svg-menu-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-minus {
+	background: url("svg/sprite.css-ed23a3d3.svg") 0 100% no-repeat;
+}
+
+.svg-minus-dims {
+	width: 20px;
+	height: 20px;
+}
+
+.svg-plus {
+	background: url("svg/sprite.css-ed23a3d3.svg") 50% 100% no-repeat;
+}
+
+.svg-plus-dims {
+	width: 20px;
+	height: 20px;
+}
+
