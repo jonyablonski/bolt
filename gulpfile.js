@@ -21,7 +21,7 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 
 // SVG
-var svgstore = require('gulp-svgstore');
+
 var svgSprite = require('gulp-svg-sprite');
 
 
@@ -52,7 +52,7 @@ var paths = {
 			output: ''
 	},
 	svg: {
-			input: './src/svg/*.svg',
+			input: ['./src/svg/**/*.svg', '!./src/svg/build'],
 			output: './src/svg/build'
 	},
 	icons: {
@@ -73,6 +73,20 @@ var sassOptions = {
 
 var autoprefixerOptions = {
 	browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
+};
+
+var svgOptions = {
+	mode: {
+		symbol: {
+      	dest: './',
+      	sprite: 'sprite.svg',
+      	example: true
+    	}
+	},
+	svg: {
+		xmlDeclaration: false,
+		doctypeDeclaration: false
+	}
 };
 
 
@@ -132,20 +146,9 @@ gulp.task('scripts', function() {
 		}))
 });
 
-
-var config                  = {
-    mode                : {
-        css             : {     // Activate the «css» mode
-            render      : {
-                css     : true  // Activate CSS output (with default options)
-            }
-        }
-    }
-};
-
 gulp.task('svg', function() {
 	return gulp.src(paths.svg.input)
-		.pipe(svgSprite(config))
+		.pipe(svgSprite(svgOptions))
 		.pipe(gulp.dest(paths.svg.output))
 		.pipe(browserSync.reload({
 			stream: true
