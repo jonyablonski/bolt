@@ -19,7 +19,10 @@
 	 var body = document.body;
 
 	 // Classes
-	 var enhanceclass = 'js';
+	 var enhanceclass = 'js',
+
+	 // Files
+    svgSymbols = 'svg/build/sprite.svg';
 
 
 	/**
@@ -135,6 +138,19 @@
 		request.open( 'GET', url );
 		request.send();
 	};
+
+
+	var loadSVG = (function() {
+		var ajax = new XMLHttpRequest();
+		ajax.open('GET', svgSymbols, true);
+		ajax.send();
+		ajax.onload = function(e) {
+		  var div = document.createElement('div');
+		  div.style.display = 'none';
+		  div.innerHTML = ajax.responseText;
+		  document.body.insertBefore(div, document.body.childNodes[0]);
+		}
+  	})();
 
 
 	var onResize = throttle( function() {

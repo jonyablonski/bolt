@@ -105,8 +105,8 @@ gulp.task('browser-sync', function() {
 gulp.task('html', function() {
 	return gulp.src(paths.markup.input)
 		.pipe(nunjucksRender({
-		path: ['./src/partials']
-	}))
+			path: ['./src/partials']
+		}))
 		.pipe(gulp.dest(paths.markup.output))
 		.pipe(browserSync.reload({
 		stream: true
