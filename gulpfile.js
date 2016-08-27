@@ -4,24 +4,26 @@
 
 // General
 var browserSync = require('browser-sync').create();
+var del = require('del');
 
 // Markup
 var nunjucksRender = require('gulp-nunjucks-render');
+var htmlmin = require('gulp-htmlmin');
 
 // Styles
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
-var gulpStylelint = require('gulp-stylelint');
+var cssnano = require('gulp-cssnano');
 
-// Scripts
+// Javascript
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
+var uglify = require('gulp-uglify');
 
 // SVG
-
 var svgSprite = require('gulp-svg-sprite');
 
 
@@ -33,15 +35,18 @@ var paths = {
 	output: './dist',
 	markup: {
 		input: './src/templates/**/*.+(html)',
-		output: './src'
+		output: './src',
+		dist: './dist/'
 	},
 	styles: {
 		input: './src/sass/**/*.{scss,sass}',
-		output: './src/css/build'
+		output: './src/css/build',
+		dist: './dist/css/'
 	},
-	scripts: {
+	javascript: {
 		input: ['./src/js/polyfills/*.js', './src/js/plugins/*.js', './src/js/main.js'],
 		output: './src/js/build',
+		dist: './dist/js/'
 	},
 	images: {
 			input: '',
@@ -52,12 +57,8 @@ var paths = {
 			output: ''
 	},
 	svg: {
-			input: ['./src/svg/**/*.svg', '!./src/svg/build'],
+			input: ['./src/svg/*.svg'],
 			output: './src/svg/build'
-	},
-	icons: {
-			input: '',
-			output: ''
 	}
 };
 
@@ -109,8 +110,8 @@ gulp.task('html', function() {
 		}))
 		.pipe(gulp.dest(paths.markup.output))
 		.pipe(browserSync.reload({
-		stream: true
-	}))
+			stream: true
+		}))
 });
 
 gulp.task('sass', function() {
@@ -126,21 +127,14 @@ gulp.task('sass', function() {
 		}))
 });
 
-gulp.task('lint-styles', function() {
-	return gulp.src(paths.styles.output)
-		.pipe(gulpStylelint({
-			reporters: [
-				{formatter: 'string', console: true}
-			]
-		}));
-});
-
-gulp.task('scripts', function() {
-	return gulp.src(paths.scripts.input)
+gulp.task('javascript', function() {
+	return gulp.src(paths.javascript.input)
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('jshint-stylish'))
+		.pipe(sourcemaps.init())
 		.pipe(concat('main.js'))
-		.pipe(gulp.dest(paths.scripts.output))
+		.pipe(sourcemaps.write('maps'))
+		.pipe(gulp.dest(paths.javascript.output))
 		.pipe(browserSync.reload({
 			stream: true
 		}))
@@ -157,15 +151,37 @@ gulp.task('svg', function() {
 
 gulp.task('watch', function() {
 	gulp.watch(paths.markup.input, ['html']);
-	gulp.watch(paths.styles.input, ['sass', 'lint-styles']);
+	gulp.watch(paths.styles.input, ['sass']);
 	gulp.watch(paths.svg.input, ['svg']);
-	gulp.watch(paths.scripts.input, ['scripts']);
+	gulp.watch(paths.javascript.input, ['javascript']);
+});
+
+gulp.task('clean', function() {
+	del([paths.output, '!dist/images', '!dist/images/**/*'])
 });
 
 
 /**
 * Optimization Tasks
 */
+
+gulp.task('build-html', function() {
+	return gulp.src('./src/*.html')
+		.pipe(htmlmin({collapseWhitespace: true}))
+    	.pipe(gulp.dest(paths.markup.dist))
+});
+
+gulp.task('build-css', function() {
+	return gulp.src('./src/css/build/*.css')
+		.pipe(cssnano())
+		.pipe(gulp.dest(paths.styles.dist))
+});
+
+gulp.task('build-javascript', function() {
+	return gulp.src('./src/js/build/*.js')
+		.pipe(uglify())
+    	.pipe(gulp.dest(paths.javascript.dist))
+});
 
 
 /**
@@ -175,9 +191,19 @@ gulp.task('watch', function() {
 gulp.task('default', [
 	'html',
 	'sass',
-	'lint-styles',
-	'scripts',
+	'javascript',
 	'svg',
 	'watch',
 	'browser-sync'
+]);
+
+gulp.task('build', [
+	'clean',
+	'html',
+	'sass',
+	'javascript',
+	'svg',
+	'build-html',
+	'build-css',
+	'build-javascript'
 ]);

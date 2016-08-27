@@ -19,7 +19,6 @@ They might well be outsourced to an external stylesheet of course.
 -->
 
 <style type="text/css">
-	.svg-build--sprite-dims { width: 0px; height: 0px; }
 	.svg-chevron-small-down-dims { width: 20px; height: 20px; }
 	.svg-chevron-small-left-dims { width: 20px; height: 20px; }
 	.svg-chevron-small-right-dims { width: 20px; height: 20px; }
@@ -50,7 +49,6 @@ for further details on how to create this embeddable sprite variant.
 -->
 
 <svg width="0" height="0" style="position:absolute">
-		<symbol viewBox="0 0 0 0" id="build--sprite"/>
 		<symbol viewBox="0 0 20 20" id="chevron-small-down"><path d="M13.418 7.859a.695.695 0 0 1 .978 0 .68.68 0 0 1 0 .969l-3.908 3.83a.697.697 0 0 1-.979 0l-3.908-3.83a.68.68 0 0 1 0-.969.695.695 0 0 1 .978 0L10 11l3.418-3.141z"/></symbol>
 		<symbol viewBox="0 0 20 20" id="chevron-small-left"><path d="M12.141 13.418a.695.695 0 0 1 0 .978.68.68 0 0 1-.969 0l-3.83-3.908a.697.697 0 0 1 0-.979l3.83-3.908a.68.68 0 0 1 .969 0 .695.695 0 0 1 0 .978L9 10l3.141 3.418z"/></symbol>
 		<symbol viewBox="0 0 20 20" id="chevron-small-right"><path d="M11 10L7.859 6.58a.695.695 0 0 1 0-.978.68.68 0 0 1 .969 0l3.83 3.908a.697.697 0 0 1 0 .979l-3.83 3.908a.68.68 0 0 1-.969 0 .695.695 0 0 1 0-.978L11 10z"/></symbol>
@@ -88,17 +86,6 @@ embedded above. They may be styled via CSS.
 			<h3>A) Inline SVG with embedded sprite</h3>
 			<ul>
 
-				<li title="build--sprite">
-					<div class="icon-box">
-						
-						<!-- build--sprite -->
-						<svg class="svg-build--sprite-dims">
-							<use xlink:href="#build--sprite"></use>
-						</svg>
-						
-					</div>
-					<h2>build--sprite</h2>
-				</li>
 				<li title="chevron-small-down">
 					<div class="icon-box">
 						
@@ -208,17 +195,6 @@ SVG sprite. They may be styled via CSS. (IE 9-11 with polyfill only)
 			<h3>B) Inline SVG with external sprite (IE 9-11 with polyfill only)</h3>
 			<ul>
 				
-				<li title="build--sprite">
-					<div class="icon-box">
-						
-						<!-- build--sprite -->
-						<svg class="svg-build--sprite-dims">
-							<use xlink:href="sprite.svg#build--sprite"></use>
-						</svg>
-						
-					</div>
-					<h2>build--sprite</h2>
-				</li>
 				<li title="chevron-small-down">
 					<div class="icon-box">
 						
@@ -315,7 +291,7 @@ SVG sprite. They may be styled via CSS. (IE 9-11 with polyfill only)
 
 		</section>
 		<footer>
-			<p>Generated at Fri, 26 Aug 2016 01:30:00 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.</p>
+			<p>Generated at Sat, 27 Aug 2016 17:15:50 GMT by <a href="https://github.com/jkphl/svg-sprite" target="_blank">svg-sprite</a>.</p>
 		</footer>
 	</body>
 </html>
