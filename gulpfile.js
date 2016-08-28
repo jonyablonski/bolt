@@ -3,6 +3,7 @@
 */
 
 // General
+var notify = require("gulp-notify");
 var browserSync = require('browser-sync').create();
 var del = require('del');
 
@@ -16,6 +17,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var cssnano = require('gulp-cssnano');
+var critical = require('critical').stream;
 
 // Javascript
 var concat = require('gulp-concat');
@@ -26,6 +28,10 @@ var uglify = require('gulp-uglify');
 // SVG
 var svgSprite = require('gulp-svg-sprite');
 
+// Images
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
+
 
 /**
 * Paths
@@ -35,30 +41,31 @@ var paths = {
 	output: './dist',
 	markup: {
 		input: './src/templates/**/*.+(html)',
-		output: './src',
+		output: './src/',
 		dist: './dist/'
 	},
 	styles: {
 		input: './src/sass/**/*.{scss,sass}',
-		output: './src/css/build',
+		output: './src/css/',
 		dist: './dist/css/'
 	},
 	javascript: {
-		input: ['./src/js/polyfills/*.js', './src/js/plugins/*.js', './src/js/main.js'],
-		output: './src/js/build',
+		input: ['./src/js/polyfills/*.js', './src/js/plugins/*.js', './src/js/main/main.js'],
+		output: './src/js/',
 		dist: './dist/js/'
 	},
 	images: {
-			input: '',
-			output: ''
+		input: './src/images/**/*.+(png|jpg|jpeg|gif|svg)',
+		dist: './dist/images/'
 	},
 	fonts: {
-			input: '',
-			output: ''
+		input: '',
+		output: ''
 	},
 	svg: {
-			input: ['./src/svg/*.svg'],
-			output: './src/svg/build'
+		input: ['./src/svg/*.svg'],
+		output: './src/',
+		dist: './dist/'
 	}
 };
 
@@ -78,10 +85,11 @@ var autoprefixerOptions = {
 
 var svgOptions = {
 	mode: {
+		inline: true,
 		symbol: {
       	dest: './',
       	sprite: 'sprite.svg',
-      	example: true
+      	example: false
     	}
 	},
 	svg: {
@@ -112,12 +120,15 @@ gulp.task('html', function() {
 		.pipe(browserSync.reload({
 			stream: true
 		}))
+		.pipe(notify({ message: 'HTML task complete' }))
 });
 
 gulp.task('sass', function() {
 	return gulp.src(paths.styles.input)
 		.pipe(sourcemaps.init())
-		.pipe(sass(sassOptions).on('error', sass.logError))
+		.pipe(sass(sassOptions)).on('error', notify.onError(function (error) {
+   		return 'An error occurred while compiling sass.\nLook in the console for details.\n' + error;
+		}))
 		.pipe(autoprefixer())
 		.pipe(autoprefixer(autoprefixerOptions))
 		.pipe(sourcemaps.write('maps'))
@@ -125,6 +136,7 @@ gulp.task('sass', function() {
 		.pipe(browserSync.reload({
 			stream: true
 		}))
+		.pipe(notify({ message: 'Sass task complete' }))
 });
 
 gulp.task('javascript', function() {
@@ -138,6 +150,7 @@ gulp.task('javascript', function() {
 		.pipe(browserSync.reload({
 			stream: true
 		}))
+		.pipe(notify({ message: 'Javascript task complete' }))
 });
 
 gulp.task('svg', function() {
@@ -147,6 +160,7 @@ gulp.task('svg', function() {
 		.pipe(browserSync.reload({
 			stream: true
 		}))
+		.pipe(notify({ message: 'SVG task complete' }))
 });
 
 gulp.task('watch', function() {
@@ -165,22 +179,58 @@ gulp.task('clean', function() {
 * Optimization Tasks
 */
 
-gulp.task('build-html', function() {
-	return gulp.src('./src/*.html')
+gulp.task('optimize-html', function() {
+	return gulp.src(paths.markup.output + '*.html')
 		.pipe(htmlmin({collapseWhitespace: true}))
     	.pipe(gulp.dest(paths.markup.dist))
+    	.pipe(notify({ message: 'HTML build task complete' }))
 });
 
-gulp.task('build-css', function() {
-	return gulp.src('./src/css/build/*.css')
+gulp.task('optimize-css', function() {
+	return gulp.src(paths.styles.output + '*.css')
 		.pipe(cssnano())
 		.pipe(gulp.dest(paths.styles.dist))
+		.pipe(notify({ message: 'CSS build task complete' }))
 });
 
-gulp.task('build-javascript', function() {
-	return gulp.src('./src/js/build/*.js')
+gulp.task('optimize-javascript', function() {
+	return gulp.src([paths.javascript.output + '*.js'])
 		.pipe(uglify())
     	.pipe(gulp.dest(paths.javascript.dist))
+    	.pipe(notify({ message: 'Javascript build task complete' }))
+});
+
+gulp.task('build-svg', function () {
+	return gulp.src(paths.svg.output + 'sprite.svg')
+		.pipe(gulp.dest(paths.svg.dist))
+		.pipe(notify({ message: 'SVG build task complete' }))
+});
+
+gulp.task('optimize-images', function(){
+  return gulp.src(paths.images.input)
+  .pipe(cache(imagemin({
+		interlaced: true
+	})))
+  .pipe(gulp.dest(paths.images.dist))
+  .pipe(notify({ message: 'Images have been optimized' }))
+});
+
+
+/**
+* Performance Tasks
+*/
+
+gulp.task('critical', function () {
+	return gulp.src('./dist/*.html')
+		.pipe(critical({
+			base: './dist',
+			inline: true,
+			minify: true,
+			width: 1366,
+			height: 800
+		}))
+		.pipe(gulp.dest('./dist/'))
+		.pipe(notify({ message: 'Critical CSS has been generated' }))
 });
 
 
@@ -203,7 +253,9 @@ gulp.task('build', [
 	'sass',
 	'javascript',
 	'svg',
-	'build-html',
-	'build-css',
-	'build-javascript'
+	'optimize-html',
+	'optimize-css',
+	'optimize-javascript',
+	'build-svg',
+	'optimize-images'
 ]);

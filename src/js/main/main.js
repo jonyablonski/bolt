@@ -4,25 +4,14 @@
 
 
 	/**
-	 * Cut the Mustard
-	 */
-	if ( !window.addEventListener && !document.querySelector ) {
-		return;
-	}
-
-
-	/**
 	 * Selectors
 	 */
 
 	 // Elements
 	 var body = document.body;
 
-	 // Classes
-	 var enhanceclass = 'js',
-
 	 // Files
-    svgSymbols = 'svg/build/sprite.svg';
+    var svgSymbols = 'sprite.svg';
 
 
 	/**
@@ -144,13 +133,13 @@
 		var ajax = new XMLHttpRequest();
 		ajax.open('GET', svgSymbols, true);
 		ajax.send();
-		ajax.onload = function(e) {
-		  var div = document.createElement('div');
-		  div.style.display = 'none';
-		  div.innerHTML = ajax.responseText;
-		  document.body.insertBefore(div, document.body.childNodes[0]);
+		ajax.onload = function() {
+			var div = document.createElement('div');
+			div.style.display = 'none';
+			div.innerHTML = ajax.responseText;
+			document.body.insertBefore(div, document.body.childNodes[0]);
 		}
-  	})();
+	})();
 
 
 	var onResize = throttle( function() {
@@ -174,8 +163,6 @@
 	* Events/APIs/init
 	*/
 
-	document.documentElement.className += ' ' + enhanceclass;
-
 	document.addEventListener( 'click', clickEventHandler, false );
 
 	window.addEventListener('popstate', popstateEventHandler, false);
@@ -185,4 +172,3 @@
 	window.addEventListener( 'scroll', onScroll, false );
 
 })( window, document );
-//# sourceMappingURL=maps/main.js.map
