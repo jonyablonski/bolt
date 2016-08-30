@@ -4,19 +4,22 @@
 
 
 	/**
-	 * Selectors
-	 */
+	* Selectors
+	*/
 
-	 // Elements
-	 var body = document.body;
+	// Elements
+	var body = document.body;
 
-	 // Files
-    var svgSymbols = 'sprite.svg';
+	// Files
+	var svgSymbols = 'sprite.svg';
+
+	// Class Names
+	var fontsLoaded = 'fonts-loaded';
 
 
 	/**
-	 * Methods
-	 */
+		* Methods
+		*/
 
 	function removeQuotes( string ) {
 		if ( typeof string === 'string' || string instanceof String ) {
@@ -27,8 +30,8 @@
 
 
 	var checkMedia = function() {
-		 var media = window.getComputedStyle( body,':after' ).getPropertyValue( 'content' );
-		 return removeQuotes( media );
+			var media = window.getComputedStyle( body,':after' ).getPropertyValue( 'content' );
+			return removeQuotes( media );
 	};
 
 
@@ -138,7 +141,27 @@
 			div.style.display = 'none';
 			div.innerHTML = ajax.responseText;
 			document.body.insertBefore(div, document.body.childNodes[0]);
-		}
+		};
+	})();
+
+
+	var loadFonts = (function() {
+		var fontA = new FontFaceObserver('Open Sans', {
+			weight: 400
+		});
+
+		var fontB = new FontFaceObserver('Open Sans', {
+			weight: 700
+		});
+
+		Promise
+			.all([
+				fontA.check(),
+				fontB.check()
+			])
+			.then(function() {
+				document.body.className += ' ' + fontsLoaded;
+		});
 	})();
 
 
