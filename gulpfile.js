@@ -27,6 +27,7 @@ var uglify = require('gulp-uglify');
 
 // SVG
 var svgSprite = require('gulp-svg-sprite');
+var svg2png = require('gulp-svg2png');
 
 // Images
 var imagemin = require('gulp-imagemin');
@@ -56,11 +57,12 @@ var paths = {
 	},
 	images: {
 		input: './src/images/**/*.+(png|jpg|jpeg|gif|svg)',
+		output: './src/images/',
 		dist: './dist/images/'
 	},
 	fonts: {
-		input: '',
-		output: ''
+		input: './src/fonts/**/*',
+		dist: './dist/fonts/'
 	},
 	svg: {
 		input: ['./src/svg/*.svg'],
@@ -96,6 +98,18 @@ var svgOptions = {
 		xmlDeclaration: false,
 		doctypeDeclaration: false
 	}
+};
+
+var svgFallbackOptions = {
+	width: 30,
+	height: 30
+};
+
+var imageMinOptions = {
+	progressive: true,
+	optimizationLevel: 5,
+	progressive: true, interlaced: true,
+	interlaced: true
 };
 
 
@@ -153,7 +167,7 @@ gulp.task('javascript', function() {
 		.pipe(notify({ message: 'Javascript task complete' }))
 });
 
-gulp.task('svg', function() {
+gulp.task('svg', ['svg-fallback'], function() {
 	return gulp.src(paths.svg.input)
 		.pipe(svgSprite(svgOptions))
 		.pipe(gulp.dest(paths.svg.output))
@@ -161,6 +175,13 @@ gulp.task('svg', function() {
 			stream: true
 		}))
 		.pipe(notify({ message: 'SVG task complete' }))
+});
+
+gulp.task('svg-fallback', function () {
+	gulp.src(paths.svg.input)
+		.pipe(svg2png(svgFallbackOptions,true))
+		.pipe(gulp.dest(paths.images.output))
+		.pipe(notify({ message: 'Fallback png has been generated' }))
 });
 
 gulp.task('watch', function() {
@@ -200,19 +221,23 @@ gulp.task('optimize-javascript', function() {
     	.pipe(notify({ message: 'Javascript build task complete' }))
 });
 
-gulp.task('build-svg', function () {
+gulp.task('copy-fonts', function () {
+	return gulp.src(paths.fonts.input)
+		.pipe(gulp.dest(paths.fonts.dist))
+		.pipe(notify({ message: 'Fonts have been copied' }))
+});
+
+gulp.task('copy-svg', function () {
 	return gulp.src(paths.svg.output + 'sprite.svg')
 		.pipe(gulp.dest(paths.svg.dist))
 		.pipe(notify({ message: 'SVG build task complete' }))
 });
 
-gulp.task('optimize-images', function(){
-  return gulp.src(paths.images.input)
-  .pipe(cache(imagemin({
-		interlaced: true
-	})))
-  .pipe(gulp.dest(paths.images.dist))
-  .pipe(notify({ message: 'Images have been optimized' }))
+gulp.task('optimize-images', function() {
+	return gulp.src(paths.images.input)
+		.pipe(cache(imagemin(imageMinOptions)))
+		.pipe(gulp.dest(paths.images.dist))
+		.pipe(notify({ message: 'Images have been optimized' }))
 });
 
 
@@ -256,6 +281,7 @@ gulp.task('build', [
 	'optimize-html',
 	'optimize-css',
 	'optimize-javascript',
-	'build-svg',
+	'copy-fonts',
+	'copy-svg',
 	'optimize-images'
 ]);
