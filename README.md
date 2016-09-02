@@ -1,5 +1,5 @@
 # bolt
-Bolt is a performance-centered, bare-bones project boilerplate for websites with speed as a crucial feature.
+Bolt is a simple project boilerplate that prioritizes performance, accessibility, and progressive enhancement.
 
 [Download Bolt](https://github.com/jmy1138/bolt/archive/master.zip)
 
