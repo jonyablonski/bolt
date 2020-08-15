@@ -40,7 +40,7 @@ var paths = {
 	input: './src',
 	output: './dist',
 	markup: {
-		input: './src/templates/**/*.+(html)',
+		input: ['./src/templates/**/*.+(html)', './src/partials/**/*.+(html)'],
 		output: './src/',
 		dist: './dist/'
 	},
