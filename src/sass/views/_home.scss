@@ -1,0 +1,25 @@
+#gear {
+	animation: rotate 30s linear infinite forwards;
+	transform-origin: center;
+	fill: $base-font-color;
+}
+
+#meter {
+	fill: $base-accent-color;
+}
+
+#body {
+	fill: $base-font-color;
+}
+
+#hand {
+	stroke: $color-off-white;
+	stroke-width: 4;
+	animation: hand 3s $base-transition-timing forwards;
+	transform-origin: center center;
+	fill: $base-font-color;
+}
+
+#globe {
+	fill: $base-font-color;
+}

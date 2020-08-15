@@ -1,0 +1,53 @@
+// Breakpoints
+$breakpoints: (
+ small: 30em,
+ medium: 45em,
+ large: 80em,
+ xlarge: 125em
+);
+
+// Media Quries
+$small: "(min-width: 40em)";
+$medium: "(min-width: 64em)";
+$large: "(min-width: 80em)";
+
+// Spacing
+$base-spacing: 1em;
+
+// Typography
+$base-font-size: 1em;
+$base-line-height: 1.5;
+$header-line-height: 1.25;
+
+// Colors Vars
+$color-gold: #B5A54A;
+$color-blue: #242A32;
+$color-off-white: #F5F5F5;
+$color-grey: #6E8199;
+
+// Colors Base
+$base-accent-color: $color-gold;
+$secondary-accent-color: invert($base-accent-color);
+$base-font-color: $color-blue;
+$base-background-color: white;
+
+// Link Colors
+$base-link-color: $base-accent-color;
+$hover-link-color: darken($base-accent-color, 10%);
+$base-button-color: $base-link-color;
+$hover-button-color: $hover-link-color;
+
+// Transition Settings
+$base-transition-duration: .2s;
+$base-transition-timing: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+// Border Radius
+$base-border-radius: 0.2em;
+
+// Borders
+$base-border-color: $color-grey;
+$base-border: 1px solid $base-border-color;
+
+// Shadow
+$base-box-shadow: 0 2px 8px 0 rgba(black, 0.2);
+$reverse-box-shadow: 0 -2px 8px 0 rgba(black, 0.2);

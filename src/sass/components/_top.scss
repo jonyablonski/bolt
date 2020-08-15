@@ -1,0 +1,19 @@
+.top {
+	display: block;
+	margin: $base-spacing auto $base-spacing*2;
+	background-color: $base-link-color;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	transition: background-color $base-transition-duration $base-transition-timing;
+
+	svg {
+		position: relative;
+		top: 0.2em;
+		fill: $color-off-white;
+	}
+
+	&:hover {
+		background-color: $hover-link-color;
+	}
+}

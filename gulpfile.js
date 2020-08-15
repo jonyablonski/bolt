@@ -33,13 +33,6 @@ var svg2png = require('gulp-svg2png');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
 
-// Page Speed Insights
-var ngrok = require('ngrok');
-var psi = require('psi');
-var sequence = require('run-sequence');
-var site = '';
-var portVal = 3020;
-
 /**
  * Paths
  */
@@ -192,7 +185,7 @@ gulp.task('svg-fallback', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.markup.input, ['html']);
+	gulp.watch([paths.markup.input, './src/partials/**/*.html'], ['html']);
 	gulp.watch(paths.styles.input, ['sass']);
 	gulp.watch(paths.svg.input, ['svg']);
 	gulp.watch(paths.javascript.input, ['javascript']);
@@ -267,53 +260,6 @@ gulp.task('critical', function() {
 
 
 /**
- * Page Insights Tasks
- */
-
-gulp.task('browser-sync-psi', function() {
-	browserSync.init({
-		port: portVal,
-		open: false,
-		server: {
-			baseDir: paths.input
-		}
-	});
-});
-
-gulp.task('ngrok-url', function(cb) {
-	return ngrok.connect(3000, function(err, url) {
-		site = url;
-		console.log('serving your tunnel from: ' + site);
-		cb();
-	});
-});
-
-gulp.task('psi-desktop', function(cb) {
-	return psi(site, {
-		nokey: 'true',
-		strategy: 'desktop'
-	}).then(function(data) {
-		console.log('Speed score: ' + data.ruleGroups.SPEED.score);
-	});
-});
-
-gulp.task('psi-mobile', function(cb) {
-	return psi(site, {
-		nokey: 'true',
-		strategy: 'mobile'
-	}).then(function(data) {
-		console.log('Speed score: ' + data.ruleGroups.SPEED.score);
-		console.log('Usability score: ' + data.ruleGroups.USABILITY.score);
-	});
-});
-
-gulp.task('psi', ['insights'], function() {
-	console.log('PageSpeed Insights complete')
-	process.exit();
-})
-
-
-/**
  * Task Runners
  */
 
@@ -339,17 +285,3 @@ gulp.task('build', [
 	'copy-svg',
 	'optimize-images'
 ]);
-
-gulp.task('insights', function(cb) {
-	return sequence(
-		'html',
-		'sass',
-		'javascript',
-		'svg',
-		'browser-sync-psi',
-		'ngrok-url',
-		'psi-desktop',
-		'psi-mobile',
-		cb
-	);
-});

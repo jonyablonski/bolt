@@ -1,0 +1,34 @@
+
+@keyframes rotate {
+	to {
+		transform: rotate3d(0, 0, 1, 180deg);
+	}
+}
+
+@keyframes hand {
+	0% {
+		transform: rotate(-90deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes globe {
+	from {
+		fill: $base-font-color;
+	}
+	to {
+		fill: $hover-link-color;
+	}
+}
+
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

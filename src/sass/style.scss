@@ -1,16 +1,31 @@
+/// Settings
+@import 'settings';
+@import 'helpers';
+
 /// Utils
 @import 'utils/mixins';
-
-/// Settings
+@import 'utils/functions';
+@import 'utils/animations';
+@import 'utils/modular-scale';
 
 /// Base
 @import 'base/print';
 @import 'base/normalize';
 @import 'base/fonts';
 @import 'base/base';
+@import 'base/typography';
 
 /// Components
+@import 'components/container';
+@import 'components/icon';
+@import 'components/button';
+@import 'components/top';
 
 /// Patterns
+@import 'patterns/header';
+@import 'patterns/control';
+@import 'patterns/progress';
+@import 'patterns/footer';
 
 /// Views
+@import 'views/home';

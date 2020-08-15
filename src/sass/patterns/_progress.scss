@@ -1,0 +1,46 @@
+.progress {
+	display: flex;
+	justify-content: space-between;
+	align-content: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+	width: 100%;
+	padding: $base-spacing;
+	background: white;
+	box-shadow: $reverse-box-shadow;
+
+	@media #{$medium} {
+		padding: $base-spacing*1.5;
+	}
+}
+
+.progress__bar {
+	position: relative;
+	width: 100%;
+	background-color: $color-off-white;
+	flex: 1 0 0;
+}
+
+.progress__bar-inner {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	background-color: $base-accent-color;
+	transition: width $base-transition-duration*2 $base-transition-timing;
+}
+
+.progress__count {
+	align-self: center;
+	margin: 0 $base-spacing 0;
+	font-size: ms(-1);
+	color: $color-grey;
+
+	@media #{$medium} {
+		margin: 0 $base-spacing*3 0 $base-spacing;
+	}
+}

@@ -12,9 +12,12 @@ html {
 
 body {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	color: $base-font-color;
+	line-height: $base-line-height;
+	background-color: $base-background-color;
 
 	&.fonts-loaded {
-		font-family: "Open Sans";
+		font-family: "Gotham Book Regular";
 	}
 }
 
@@ -27,13 +30,13 @@ body {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: $base-accent-color;
+	text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
-    text-shadow: none;
+	background: $base-accent-color;
+	text-shadow: none;
 }
 
 /*
@@ -41,10 +44,43 @@ body {
  */
 
 hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: $base-border;
+	margin: $base-spacing*2 0;
+	padding: 0;
+}
+
+img {
+	max-width: 100%;
+}
+
+section {
+	margin: 0 0 $base-spacing*3;
+	border-bottom: $base-border;
+
+	&:last-of-type {
+		margin: 0;
+	}
+}
+
+
+/*
+ * Links
+ */
+a {
+	color: $base-link-color;
+	text-decoration: none;
+	transition: color $base-transition-duration $base-transition-timing;
+
+	&:hover {
+		color: $hover-link-color;
+	}
+
+	&:active,
+	&:focus {
+		color: $hover-link-color;
+		outline: none;
+	}
 }

@@ -1,0 +1,5 @@
+.container {
+	margin: 0 auto;
+	padding: $base-spacing;
+	max-width: map-get($breakpoints, medium);
+}

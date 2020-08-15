@@ -1,43 +1,318 @@
 <!doctype html>
 <html>
+
 	<head>
 	<meta charset="utf-8">
-	<title></title>
+	<title>Designer's Web Performance Optimization Checklist</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<link href="./css/style.css" rel="stylesheet">
 
 	<!-- Social Meta Tags-->
-	<meta property="og:title" content="">
-<meta property="og:description" content="">
-<meta property="og:image" content="">
-<meta property="og:url" content="">
-<meta name="twitter:card" content="">
-<meta name="og:site_name" content="">
-<meta name="twitter:image:alt" content="">
-<meta name="twitter:site" content="@website-username">
+	<meta property="og:title" content="Designers Web Performance Checklist">
+<meta property="og:description" content="A comprehensive project checklist for designers focused on prioritizing performance on the web.">
+<meta property="og:image" content="designer-wpo_thumb.jpg">
+<meta property="og:url" content="http://jonyablonski.com/designers-wpo-checklist/">
+<meta name="twitter:card" content="http://jonyablonski.com/designers-wpo-checklist/designer-wpo_thumb.jpg">
+<meta name="og:site_name" content="Designers Web Performance Checklist">
+<meta name="twitter:image:alt" content="Web Performance Icon">
+<meta name="twitter:site" content="@jonyablonski">
 	<!-- Social Meta Tags -->
-
-	<!-- Picturefill -->
-	<script>document.createElement( "picture" );</script>
-	<script src="./js/picturefill-3.0.2.js" async></script>
-	<!-- Picturefill -->
 
 </head>
 
 
-	<body>
+	<body id="top">
 
-		<h1>This is Just a Test</h1>
-		<p>Etiam feugiat lorem non metus. Nullam nulla eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Vivamus aliquet elit ac nisl. Aliquam lobortis. Vestibulum ullamcorper mauris at ligula. Nunc nulla. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus. In ac felis quis tortor malesuada pretium. Pellentesque auctor neque nec urna. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.</p>
+		<header role="banner" class="header">
+	<div class="header__container container">
+		<div class="header__img">
+			<svg id="gauge" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 482 480"><title>Design-WPO</title><path id="body" d="M241,101.91A138.05,138.05,0,0,0,117,300.57c22,45.9,69.59,77.52,124.12,77.52,48.56,0,90.88-25.08,115.88-63A138.16,138.16,0,0,0,241,101.91Zm0,255.66a34.85,34.85,0,1,1,34.85-34.85A34.89,34.89,0,0,1,241,357.57ZM349.9,270H132.1A109.42,109.42,0,0,1,128,239.94a113,113,0,0,1,225.94,0A109.53,109.53,0,0,1,349.9,270Z"/><path id="meter" d="M291.21,176.51l10.61-10.61c-37.33-28.9-87.24-27.41-122.94,4.39l10.52,10.53C219.25,154.77,259.81,153.31,291.21,176.51Z"/><path id="hand" d="M305.8,168.72L250,226.07a16.5,16.5,0,1,0,5.64,6.11l56-57.59A4.15,4.15,0,0,0,305.8,168.72ZM241,245a5,5,0,1,1,5-5A5,5,0,0,1,241,245Z"/><path id="gear" d="M482,262.39V215.56c0-1.17-.31-7.06-5.19-7.67l-0.45-.06-53.28-8.91-1.64-6.52c-3.74-14.95-10.3-30.51-20-47.57L398.08,139l31.49-42.75c2.27-4.24,2-7.81-.81-10.62l-33-33.05A10,10,0,0,0,385,52.28L341.64,84.17l-5.93-3.81c-13.84-8.9-29.26-15.4-47.12-19.86l-6.51-1.63-8.8-52.52c-1-3-3.59-6.34-7.84-6.34H218.61c-0.72,0-7,.22-7.67,5.25l-0.06.46L202,59l-6.52,1.64a175.59,175.59,0,0,0-48.5,20L141.22,84,98.3,53.7c-4.27-2.31-7.87-2.05-10.69.77L54.15,87.9c-3.06,3.06-2.58,7.25-1.47,8.64L53,97l31.69,44.37-3.26,5.7a187.46,187.46,0,0,0-19,47.57l-1.63,6.54L7.29,210C3.7,211.15,0,214.2,0,217.79v46.83c0,3.43,2.17,7.16,6.22,7.67l0.43,0.06,53.8,8.9,1.64,6.53a155.3,155.3,0,0,0,20,47.12l3.73,5.8L54.7,384.91c-2.15,2.59-1.5,6.87-.07,9l33,32.93c3,3,7.12,3.68,9.61,1.61l0.6-.47,44.37-31.69,5.7,3.26a187.46,187.46,0,0,0,47.57,19L202,420.2l8.81,52.44C212,476.26,215,480,218.61,480h46.83a7.45,7.45,0,0,0,7.67-6.28l0.06-.44,8.88-53.72,6.39-1.71a195.75,195.75,0,0,0,46.61-19.24l5.78-3.3,42.76,31.34c4.22,2.26,7.79,2,10.63-.87l33.45-33.48c3-3,3.68-7.12,1.61-9.61l-0.38-.49L396.83,338.6l3.81-5.93c8.9-13.84,15.4-29.26,19.86-47.12l1.63-6.54,53.59-8.78C478.7,269.22,482,266.65,482,262.39ZM242,388c-82.16,0-149-66.84-149-149S159.87,90,242,90s149,66.84,149,149S324.18,388,242,388Z"/><path id="globe" d="M225.22,301.47l0.78,0.15,0.41-.68a49.21,49.21,0,0,1,4.6-6.45l2.79-3.31-4,1.52a32,32,0,0,0-9.69,5.75l-1.63,1.41,2.09,0.54C222,300.79,223.56,301.15,225.22,301.47Zm26.4,37.79,0.8,0.11,0.36-.72a43.65,43.65,0,0,0,4.43-14.1l0.16-1.54H242v15.49l1.27,0C246,338.65,249,338.9,251.62,339.26ZM220.7,319.8c0-.61.05-1.32,0.1-1.92A37.8,37.8,0,0,1,224,305.49l0.57-1.27-1.36-.29c-1.09-.24-2.15-0.49-3.17-0.75s-2-.53-2.93-0.81l-0.73-.22-0.48.61a32.06,32.06,0,0,0-6.55,14.55c-0.13.76-.23,1.57-0.31,2.34L209,321h11.71Zm36.87-15.51-1.57.3h0l0.77,1.29a38,38,0,0,1,3.41,13.9l0,1.2h12.83l-0.12-1.35a32.3,32.3,0,0,0-6.88-16.93l-0.49-.62-0.81.25c-1.12.38-2.33,0.73-3.5,1.06S258.78,304,257.57,304.29Zm-2.85-2.94,0.4,0.69,0.78-.15c2-.37,3.88-0.84,5.73-1.38l2-.58-1.55-1.35a31.79,31.79,0,0,0-11.49-6.48l-3.81-1.19,2.62,3A49.08,49.08,0,0,1,254.72,301.35Zm-30.58,38.74,1.39-.28,0-.06h0l-0.6-1.35a44.51,44.51,0,0,1-4.08-14.1L220.73,323H208.94l0.08,1.47a32.75,32.75,0,0,0,6.28,17.38l0.5,0.66,0.78-.29c1.28-.45,2.55-0.85,3.82-1.22S222.91,340.35,224.14,340.08Zm33.28-20.37a35.58,35.58,0,0,0-3.47-13.88l-0.36-.75h0l-0.87.12a77.13,77.13,0,0,1-9.37.72l-1.3,0V321h15.46Zm-7-17,1.81-.2-1-1.54a48.26,48.26,0,0,0-7.08-8.41l-2.1-1.85v12.47l1.34,0C245.5,303.12,248,303,250.39,302.71Zm-18.74,39-1.79.2,1,1.53a67.36,67.36,0,0,0,7,9l2.16,2.19v-13.4l-1.33,0C236.53,341.3,234,341.46,231.65,341.72Zm23.06,0.86-0.77-.13-0.4.68a68.62,68.62,0,0,1-6.33,9l-2.15,2.59,3.28-.77a32.12,32.12,0,0,0,14.51-7.78l1.49-1.39-2-.53C260.74,343.81,258.09,343.16,254.71,342.58Zm-27.39.49-0.4-.69-0.78.15a62.46,62.46,0,0,0-6.61,1.66l-1.86.57,1.42,1.33a32.16,32.16,0,0,0,13.12,7.47l3.48,1-2.3-2.8A67.17,67.17,0,0,1,227.32,343.07ZM250,343.52l0.57-.92L251,342l-1.81-.2c-1.73-.19-3.78-0.34-5.77-0.43l-1.37-.06v12.18l2.18-2.33c0.47-.55,1-1.11,1.45-1.67A62.72,62.72,0,0,0,250,343.52ZM260.15,323L260,324.28A44.49,44.49,0,0,1,256,338.37l-0.62,1.38h0l0,0.06,1.43,0.28a79.69,79.69,0,0,1,8.69,2.16l0.76,0.24,0.48-.64A32.74,32.74,0,0,0,273,324.47l0.08-1.47H260.15Zm-36.48,1.54a37.88,37.88,0,0,0,1,5.15,45.69,45.69,0,0,0,3.39,8.88l0.39,0.72,0.85-.11a78.43,78.43,0,0,1,9.39-.71l1.3,0V323H223.51Zm4.64-19.67-0.82-.12-0.37.78a35.36,35.36,0,0,0-3.65,14.19l0,1.28H240V305.91l-1.27,0A93.87,93.87,0,0,1,228.31,304.87Zm1.61-4.24-1,1.5,1.8,0.24c2.56,0.34,5.32.58,7.9,0.7l1.37,0.05V289.81l-2.07,1.7A48,48,0,0,0,229.92,300.63Z"/></svg>
+		</div>
 
-		<p>Cras id dui. Mauris sollicitudin fermentum libero. Fusce fermentum odio nec arcu. Fusce fermentum. Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Nam pretium turpis et arcu. Fusce a quam. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Nullam quis ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.</p>
+		<div class="header__body">
+			<p class="header__lead">Designers</p>
+			<h1 class="header__title">Web Performance Checklist</h1>
+			<p class="header__desc">Based on ‘<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/">Designers Guide to Web Performance Optimization</a>’ by Jon Yablonski</p>
+			<div class="header__share">
+				<a href="https://twitter.com/home?status=Check out the 'Designers%20Web%20Performance%20Checklist'%20by%20%40jonyablonski.%20http%3A//jonyablonski.com/designers-wpo-checklist/">
+					<svg width="25" viewBox="0 0 100 100">
+						<use xlink:href="#twitter" />
+					</svg>
+					Share This Project
+				</a>
+			</div>
+		</div>
+	</div>
+</header>
 
-		<p>Quisque rutrum. Maecenas ullamcorper, dui et placerat feugiat, eros pede varius nisi, condimentum viverra felis nunc et lorem. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Nulla facilisi.</p>
+		<main role="main">
+			<div class="container">
+				<form id="js-checklist" data-persist="garlic" data-destroy="false" method="POST">
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="90" viewBox="0 0 100 100">
+			<use xlink:href="#process_workflow" />
+		</svg>
+
+		<h2>Process &amp; Workflow</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Consider all viewport sizes, not just “mobile, tablet, desktop” (aka iPhone, iPad, iMac)
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#shift-your-perspective">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Begin designs by thinking about users on smaller screen first
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#shift-your-perspective">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Involve the development team in the design process
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#collaborate">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Create and follow a performance budget
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#performance-budget">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Avoid one-off design solutions
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#avoid-one-offs">Learn More</a>
+	</label>
+</section>
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="80" viewBox="0 0 100 100">
+			<use xlink:href="#animations_effects" />
+		</svg>
+		<h2>Animation & Effects</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Ensure that animations improve the user experience by providing meaning to the user
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#meaningful-animation">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Effects that are triggered during the scroll event consider the needs of the user first and foremost
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#scroll-effects">Learn More</a>
+	</label>
+</section>
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="90" height="90" viewBox="0 0 100 100">
+			<use xlink:href="#fonts" />
+		</svg>
+		<h2>Fonts</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Don’t exceed a total of three custom web fonts
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#limit-fonts">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Ensure custom web fonts have been optimized for web use
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#choose-fonts-wisely">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Ensure the proper font formats have been created for development, including WOFF 2.0 format
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#font-formats">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Have web safe fallback fonts for each custom web font in use
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#fallback-fonts">Learn More</a>
+	</label>
+</section>
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="80" viewBox="0 0 100 100">
+			<use xlink:href="#images" />
+		</svg>
+		<h2>Images</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Use images sparingly and for maximum impact
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#use-sparingly">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Ensure that image formats are appropriate for how they are being used
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#choose-right-format">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Generate the correct image sizes have been created for each image
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#responsive-images">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Save images for web
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#image-optimization">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Optimize images
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#image-optimization">Learn More</a>
+	</label>
+</section>
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="90" viewBox="0 0 100 100">
+			<use xlink:href="#svg" />
+		</svg>
+
+		<h2>SVG</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Use SVGs in place of images whenever appropriate
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#when-to-use-svg">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Consider browser support
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#when-to-use-svg">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Ensure SVGs don’t contain extraneous layers
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#svg-optimization">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Simplify SVG paths during creation process
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#svg-optimization">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Optimize SVGs
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#svg-optimization">Learn More</a>
+	</label>
+</section>
+
+					<section>
+	<header class="text-align-center">
+		<svg class="icon" width="80" viewBox="0 0 100 100">
+			<use xlink:href="#perceived-performance" />
+		</svg>
+
+		<h2>Perceived Performance</h2>
+	</header>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Provide instant feedback to the user where appropriate
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#instant-feedback">Learn More</a>
+	</label>
+
+	<label class="control checkbox">
+		<input type="checkbox">
+		<span class="control-indicator"></span>
+		Use placeholder content to populate the page when no content is available
+		<a href="http://jonyablonski.com/2016/designers-guide-to-web-performance-optimization/#placeholder-content">Learn More</a>
+	</label>
+</section>
+
+				</form>
+			</div>
+		</main>
+
+
+		<aside class="progress">
+	<div class="progress__bar">
+		<div id="js-progress-bar" class="progress__bar-inner"></div>
+	</div>
+	<div id="js-progress-count" class="progress__count"></div>
+	<input type="reset" value="Reset" class="progress__reset">
+</aside>
+
+		<div class="container text-align-center">
+	<a data-scroll href="#top" class="top">
+		<svg width="40" viewBox="0 0 100 100">
+			<use xlink:href="#chevron-small-up" />
+		</svg>
+	</a>
+</div>
+
+		<!-- Footer -->
+<footer role="contentinfo" class="footer">
+	<div class="container">
+		©JON YABLONSKI 2016 | ALL RIGHTS RESERVED</small>
+	</div>
+</footer>
+<!-- Footer -->
+
 
 	</body>
 
 	<script type="text/javascript" src="./js/fontfaceobserver.js"></script>
 <script type="text/javascript" src="./js/main.js"></script>
+
+<!-- Google Analytics -->
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-15084185-4', 'auto');
+	ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
 </html>

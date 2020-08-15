@@ -1,0 +1,49 @@
+p {
+	margin: 0 0 $base-spacing;
+}
+
+h1 {
+	font-size: ms(2);
+
+	@media #{$small} {
+		font-size: ms(3);
+	}
+}
+
+h2 {
+	font-size: ms(1);
+
+	@media #{$small} {
+		font-size: ms(2);
+	}
+}
+
+h3 {
+	font-weight: ms(0);
+
+	@media #{$small} {
+		font-size: ms(1);
+	}
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: $header-line-height;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+
+	.fonts-loaded & {
+		font-family: "Gotham Bold Regular";
+	}
+}
+
+h1,
+h2 {
+	margin: 0 0 $base-spacing;
+
+	@media #{$small} {
+		margin: 0 0 $base-spacing*2;
+	}
+}

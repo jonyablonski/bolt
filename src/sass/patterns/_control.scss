@@ -1,0 +1,90 @@
+.control {
+	position: relative;
+	display: block;
+	padding: $base-spacing*2 $base-spacing*2 $base-spacing*2 $base-spacing*6;
+	color: $base-font-color;
+	cursor: pointer;
+	border-top: $base-border;
+	border-right: $base-border;
+	border-left: $base-border;
+	background-color: white;
+	transition: color $base-transition-duration*2 ease-in-out;
+
+	&:hover {
+		color: $base-font-color;
+	}
+
+	@media #{$small} {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+.control input {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+}
+
+.control-indicator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: $base-spacing*4;
+	height: 100%;
+	line-height: 100%;
+	text-align: center;
+	background-size: 50% 50%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	border-right: $base-border;
+	pointer-events: none;
+	transition: all $base-transition-duration $base-transition-timing;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.control a {
+	display: block;
+	margin-top: $base-spacing/2;
+	font-size: ms(-1);
+
+	&:after {
+		content: "";
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: $base-spacing/2;
+		width: 6px;
+		height: 11px;
+		background-repeat: none;
+		background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNS43IDEwIj48c3R5bGU+LnN0MHtmaWxsOiNiNWE1NGF9PC9zdHlsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNLjIgMS4zQy0uMSAxLS4xLjUuMi4yYy4zLS4zLjgtLjMgMSAwbDQuMiA0LjJjLjMuMy4zLjggMCAxLjFMMS4zIDkuOGMtLjMuMy0uOC4zLTEgMEMwIDkuNSAwIDkgLjMgOC43TDMuNiA1IC4yIDEuM3oiLz48L3N2Zz4=);
+	}
+
+	@media #{$small} {
+		flex: 0 0 10em;
+		text-align: right;
+	}
+}
+
+/* Hover state */
+.control:hover .control-indicator {
+	background-color: $color-off-white;
+}
+
+/* Focus */
+.control input:focus ~ .control {
+	background-color: $color-off-white;
+}
+
+/* Checked state */
+.control input:checked ~ .control-indicator {
+	background-color: $color-off-white;
+}
+
+.checkbox input:checked ~ .control-indicator {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAgMTciPjxzdHlsZT4uc3Qwe2ZpbGw6I2FjOWI0MX08L3N0eWxlPjx0aXRsZT5GaWxsIDE8L3RpdGxlPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xOS41IDEuNGwtMS4zLTFjLS42LS41LTEtLjUtMS42LjJMNy4yIDEyLjEgMi44IDguNWMtLjYtLjUtMS0uNS0xLjUuMkwuMyAxMGMtLjUuNi0uNCAxIC4yIDEuNWw2LjIgNS4yYy42LjUgMSAuNSAxLjUtLjFMMTkuNiAzYy42LS43LjUtMS4xLS4xLTEuNnoiLz48L3N2Zz4=);
+}

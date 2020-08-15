@@ -18,7 +18,6 @@
     "gulp-cache": "^0.4.5",
     "gulp-concat": "^2.6.0",
     "gulp-cssnano": "^2.1.2",
-    "gulp-exit": "0.0.2",
     "gulp-htmlmin": "^2.0.0",
     "gulp-imagemin": "^3.0.3",
     "gulp-jshint": "^2.0.1",
@@ -30,9 +29,6 @@
     "gulp-svg2png": "^2.0.0",
     "gulp-uglify": "^2.0.0",
     "jshint": "^2.9.3",
-    "jshint-stylish": "^2.2.1",
-    "ngrok": "^2.2.2",
-    "psi": "^2.0.4",
-    "run-sequence": "^1.2.2"
+    "jshint-stylish": "^2.2.1"
   }
 }

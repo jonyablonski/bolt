@@ -1,0 +1,29 @@
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	display: inline-block;
+	vertical-align: middle;
+	padding: $base-spacing $base-spacing*2;
+	color: $base-link-color;
+	text-transform: uppercase;
+	font-size: ms(-2);
+	letter-spacing: .3em;
+	line-height: 1.4;
+	text-decoration: none;
+	user-select: none;
+	white-space: nowrap;
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	background-color: transparent;
+	border-radius: $base-border-radius;
+	border: 1px solid $base-link-color;
+	cursor: pointer;
+	transition: all $base-transition-duration $base-transition-timing;
+	font-family: "Gotham Bold Regular";
+
+	&:hover,
+	&:focus {
+		background-color: $hover-link-color;
+		color: #fff;
+	}
+}
